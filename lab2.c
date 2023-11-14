@@ -25,8 +25,7 @@ int main(void)
  __bis_SR_register(CPUOFF + GIE); // LPM0 modunda işlemci kapalı, ADC10_ISR ile 
 işlemci çalıştırılılmaktadır
  adcVAL=ADC10MEM; 
- gdmv=adcVAL*3300/1024; //3.3 volt, yada 3300 mV referans değeri, N=10 
-bitlik ADC için gerçek değer hesabı
+ gdmv=adcVAL*3300/1024; //3.3 volt, yada 3300 mV referans değeri, N=10 bitlik ADC için gerçek değer hesabı
  fdmv=(fdmv*Kma+gdmv) /(Kma+1); 
  __no_operation(); 
  } 
@@ -46,7 +45,7 @@ __interrupt void PORT1_ISR(void){
  P1IFG=0; //P1 interruptları temizlendi
 }   
 //Port 2 interrupt alt/servis programı //yeni eklenen kısım
-#pragma vector=PORT2_VECTOR //yeni eklenen kısım
+#pragma vector=PORT2_VECTOR // yeni eklenen kısım
 __interrupt void PORT2_ISR(void){ //yeni eklenen kısım
  int i; //döngü değişkeni //yeni eklenen kısım
  for(i=0;i<3;i++){ //üç kez tekrarla //yeni eklenen kısım
