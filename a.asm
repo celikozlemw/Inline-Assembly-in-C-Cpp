@@ -30,7 +30,21 @@ SetupP1 bis.b #041h,&P1DIR ; P1.0 output
 Mainloop bis.w #ENC+ADC10SC,&ADC10CTL0 ; Start sampling/conversion
  bis.w #CPUOFF+GIE,SR ; LPM0, ADC10_ISR will force exit
  bic.b #041h,&P1OUT ; P1.0 = 0
- cmp.w #01FFh,&ADC10MEM ; ADC10MEM = A1 > 0.5AVcc?
+
+
+
+
+
+ cmp.w #007Fh,&ADC10MEM 
+jhs aa
+
+bis.b #040h, &P1OUT
+
+
+
+
+ aa  
+cmp.w #01FFh,&ADC10MEM ; ADC10MEM = A1 > 0.5AVcc?
  jlo Mainloop ; Again
  bis.b #041h,&P1OUT ; P1.0 = 1
  jmp Mainloop ; Again
