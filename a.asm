@@ -63,3 +63,15 @@ ADC10_ISR; Exit LPM0 on reti
  .sect ".int05" ; ADC10 Vector
  .short ADC10_ISR ;
  .end
+
+
+
+
+;Program, RESET etiketi ile başlar. Bu etiket, programın giriş noktasını linker’a bildirir. Bu bölümde, stack pointer (SP) 0280h adresine ayarlanır ve watchdog timer (WDT) durdurulur. WDT, programın belirli bir süre içinde yanıt vermediği durumlarda otomatik olarak resetlenmesini sağlayan bir mekanizmadır3.
+Program, SetupADC10 etiketi ile devam eder. Bu bölümde, ADC10 modülünün kontrol kayıtları ayarlanır. ADC10, analog sinyalleri 10 bitlik dijital değerlere dönüştüren bir analog-dijital dönüştürücüdür4. ADC10CTL0 kaydı, örnekleme süresini, ADC10’yu açmayı ve kesme iznini belirler. ADC10CTL1 kaydı, giriş kanalını belirler. ADC10AE0 kaydı, P1.1 pininin ADC10 girişi olarak seçilmesini sağlar.
+Program, SetupP1 etiketi ile devam eder. Bu bölümde, P1.0 pininin çıkış olarak ayarlanır. Bu pin, dijital bir LED’i kontrol etmek için kullanılacaktır.
+Program, Mainloop etiketi ile devam eder. Bu bölümde, ADC10’yu başlatmak ve örnekleme/dönüştürme işlemini gerçekleştirmek için ADC10CTL0 kaydına ENC ve ADC10SC bitleri set edilir. Ardından, program düşük güç modu 0 (LPM0) ve genel kesme izni (GIE) ile uyku moduna geçer. Bu modda, program ADC10 kesmesi (ADC10_ISR) ile uyanacaktır. Bu arada, P1.0 pininin değeri 0 olarak ayarlanır, yani LED söner.
+Program, ADC10_ISR etiketi ile devam eder. Bu bölümde, ADC10 kesmesinin gerçekleştiği zaman çalışacak kod bulunur. Bu kod, CPUOFF bitini stack pointer’dan silerek programın uyku modundan çıkmasını sağlar. Ayrıca, reti komutu ile kesmeden çıkılır.
+Program, Mainloop bölümüne geri döner. Bu bölümde, ADC10MEM kaydındaki değer 007Fh ile karşılaştırılır. ADC10MEM, ADC10 tarafından dönüştürülen dijital değeri tutan bir kayıttır4. Eğer ADC10MEM değeri 007Fh’den büyük veya eşit ise, program aa etiketine atlar. Aksi halde, program Mainloop bölümünün başına döner.
+Program, aa etiketi ile devam eder. Bu bölümde, ADC10MEM kaydındaki değer 01FFh ile karşılaştırılır. Eğer ADC10MEM değeri 01FFh’den küçük ise, program Mainloop bölümünün başına döner. Aksi halde, P1.0 pininin değeri 1 olarak ayarlanır, yani LED yanar. Sonra, program Mainloop bölümünün başına döner.
+Program, son bölümde kesme vektörlerini tanımlar. Kesme vektörleri, kesmelerin hangi adreslerdeki kodları çalıştıracağını belirleyen kayıtlardır5. Bu programda, reset kesmesi RESET etiketindeki kodu, ADC10 kesmesi ise ADC10_ISR etiketindeki kodu çalıştırır.
