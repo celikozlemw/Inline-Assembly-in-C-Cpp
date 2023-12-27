@@ -92,6 +92,6 @@ ADC10_ISR; Exit LPM0 on reti
 
 ;Potansiyometreyi çevirdiğinizde, ADC10MEM kaydındaki değerin değiştiğini gözlemleyin. Potansiyometreyi maksimum veya minimum değere getirdiğinizde, ADC10MEM kaydındaki değerin 0x3FF veya 0x000 olduğunu gözlenir. 
 
-ADC10MEM kaydındaki değerin, bellekteki diziye doğru şekilde kaydedildiğini gözlemleyin. Bellek penceresinden 0x220 adresinden itibaren olan değerleri inceleyin. Her dönüşüm sonrası, bir sonraki adrese yeni bir değer yazıldığını gözlemleyin. Dizi boyutunun 16 olduğunu ve döngüsel olarak yazıldığını gözlenir. 
+;ADC10MEM kaydındaki değerin, bellekteki diziye doğru şekilde kaydedildiğini gözlemleyin. Bellek penceresinden 0x220 adresinden itibaren olan değerleri inceleyin. Her dönüşüm sonrası, bir sonraki adrese yeni bir değer yazıldığını gözlemleyin. Dizi boyutunun 16 olduğunu ve döngüsel olarak yazıldığını gözlenir. 
 
-ADC10MEM kaydındaki değere göre, LED’lerin doğru şekilde yakıldığını veya söndürüldüğünü gözlemleyin. Potansiyometreyi çevirdiğinizde, LED’lerin durumunun değiştiğini gözlemleyin. Potansiyometreyi orta değere getirdiğinizde, her iki LED’in de söndüğünü gözlenir
+;ADC10MEM kaydındaki değere göre, LED’lerin doğru şekilde yakıldığını veya söndürüldüğünü gözlemleyin. Potansiyometreyi çevirdiğinizde, LED’lerin durumunun değiştiğini gözlemleyin. Potansiyometreyi orta değere getirdiğinizde, her iki LED’in de söndüğünü gözlenir
