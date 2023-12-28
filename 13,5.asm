@@ -48,10 +48,10 @@ loop     mov r4,r7
          rla r8
          rla r8
           rla r8; bu kısmı 13.5 için ekledik
-         
+         ;aradaki kodları sildik
          add r4,r8
          sub #27,r8; aslında ısı hassasiyetimiz 3 derece yanı 4.5x3 =13.5  .5 i ihmal etmedik 
-
+;aradaki kodları sildik çünkü tekrar rx e atıp toplama yapmamıza gerek olmadan çarpma ile işlemi tamamladık
          mov &ADC10MEM0,r5 ; anolog girişten alınan ısı ölçüm değerini r5 e attı burada referansımız r5 olacak ve tüm karşılaştırmaları buna göre yazacağız
          rla r5
          cmp r7,r5; r5-r7 yaptı
