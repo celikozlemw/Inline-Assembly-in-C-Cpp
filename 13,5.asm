@@ -66,7 +66,7 @@ bekle mov #0fffh,r15; büyük bir sayıyı r15 e attı bu sayede bir aralık bek
 ss3 dec r15
     jnz ss3
     ret
-kesme bit.b #0100b,P1IFG; src and dst
+kesme bit.b #0100b,P1IFG; src and dst;The relative position of the source (SRC), the destination (DST) and the cooperating nodes (CNs) in a wireless network. Source publication.
       jz ss4; sonuç sıfırsa ss4 e geri git
       inc r4; referansı 1 derece artır
       clr.b &P1IFG; bayrakları temizle
